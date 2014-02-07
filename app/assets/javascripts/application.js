@@ -11,7 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap
+//= require holder
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
 //= require_tree .
+
+$(document).bind('page:change', function() {
+	Holder.run();
+});

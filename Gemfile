@@ -25,6 +25,9 @@ gem 'jquery-rails'
 # Bootstrap SASS
 gem 'bootstrap-sass', '>= 3.1.0'
 
+# Holder JS
+gem 'holder_rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
