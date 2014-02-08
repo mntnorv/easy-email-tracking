@@ -2,11 +2,25 @@
   position: relative;
   
   padding-top: 150px;
-  padding-bottom: 150px;
-  background-color: #333;
+  padding-bottom: 100px;
+  background-color: #428BCA;
   color: white;
   
   text-align: center;
+}
+
+#main-container .btn {
+  background-color: transparent;
+  border-color: white;
+}
+
+#main-container .btn:hover {
+  background-color: white;
+  color: #428BCA;
+}
+
+#register-button {
+  margin-top: 30px;
 }
 
 .feature-container {
