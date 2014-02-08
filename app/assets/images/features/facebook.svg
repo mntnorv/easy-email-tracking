@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="200"
+   height="200"
+   viewBox="-274.468 752.066 200 200"
+   id="svg3017"
+   xml:space="preserve"><metadata
+   id="metadata3028"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs3026" />
+<g
+   id="Facebook_circle">
+	<circle
+   cx="-174.468"
+   cy="852.06598"
+   r="90"
+   id="circle3020"
+   style="fill:#3b579d" />
+</g>
+<g
+   id="Facebook_logo">
+	<path
+   d="m -174.376,942.066 v -68.505 h -23.092 v -26.633 h 23.092 v -20.32 c 0,-21.303 13.206,-34.542 34.007,-34.542 12.522,0 20.951,0.981 20.951,0.981 v 24.017 h -14.108 c -8.94,0 -13.14,3.144 -13.14,12.623 v 17.241 h 26.325 l -3.387,26.633 h -22.938 v 68.505 h -27.71 z"
+   id="path3002"
+   style="fill:#ffffff" />
+</g>
+</svg>

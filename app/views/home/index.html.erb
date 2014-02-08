@@ -1,7 +1,9 @@
-<div class="jumbotron">
+<div id="main-container">
 	<div class="container">
-		<h1>Welcome to EasyTrack!</h1>
-		<p>
+		<p class="title">
+			EasyTrack
+		</p>
+		<p class="subtitle">
 			Just compose your message, send it and see the results.
 		</p>
 		<p>
@@ -10,28 +12,86 @@
 	</div>
 </div>
 
-<div class="container">
-	<!-- Example row of columns -->
-	<div class="row">
-		<div class="col-md-4">
-			<h2>Email</h2>
-			<img data-src="holder.js/100%x200" />
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
+<!--<div class="feature-container">
+	<div class="container">
+		<div class="row small-feature">
+			<div class="col-sm-3 small-feature-image">
+				<img data-src="holder.js/150x150" class="img-circle" />
+			</div>
+			<div class="col-sm-9 small-feature-title">
+				Compose your message
+			</div>
 		</div>
-		<div class="col-md-4">
-			<h2>Facebook</h2>
-			<img data-src="holder.js/100%x200" />
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
+		
+		<div class="row small-feature">
+			<div class="col-sm-3 small-feature-image">
+				<img data-src="holder.js/150x150" class="img-circle" />
+			</div>
+			<div class="col-sm-9 small-feature-title">
+				Send it
+			</div>
 		</div>
-		<div class="col-md-4">
-			<h2>Twitter</h2>
-			<img data-src="holder.js/100%x200" />
-			<p>
-				Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-			</p>
+		
+		<div class="row small-feature">
+			<div class="col-sm-3 small-feature-image">
+				<img data-src="holder.js/150x150" class="img-circle" />
+			</div>
+			<div class="col-sm-9 small-feature-title">
+				See the results
+			</div>
 		</div>
 	</div>
+</div>-->
+
+<div class="feature-container">
+	<div class="container">
+		<h2 class="feature-title">
+			Simple
+		</h2>
+		<p class="feature-subtitle">
+			Send and track messages with just 3 steps
+		</p>
+		<div class="row small-feature">
+			<div class="col-sm-4">
+				<img data-src="holder.js/200x200" class="img-circle" />
+				<h3>Compose</h3>
+				<p>Write your message with our full-featured HTML message composer or import HTML written in your favorite text editor.</p>
+			</div>
+			<div class="col-sm-4">
+				<img data-src="holder.js/200x200" class="img-circle" />
+				<h3>Send</h3>
+				<p>Select the services you want to send to, select the recipients and hit "Send".</p>
+			</div>
+			<div class="col-sm-4">
+				<img data-src="holder.js/200x200" class="img-circle" />
+				<h3>Track</h3>
+				<p>Track who and when opened your messages in all of the different services you sent your message to, all in one screen.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="feature-container even">
+	<div class="container">
+		<h2 class="feature-title">
+			Supports your favorite services
+		</h2>
+		<p class="feature-subtitle">
+			Send messages to any of your favorite services, all at the same time. Track your messages in all of them in one screen.
+		</p>
+		<div class="row small-feature">
+			<div class="col-sm-4">
+				<%= image_tag "features/email.svg" %>
+				<h3>Email</h3>
+			</div>
+			<div class="col-sm-4">
+				<%= image_tag "features/facebook.svg" %>
+				<h3>Facebook</h3>
+			</div>
+			<div class="col-sm-4">
+				<%= image_tag "features/twitter.svg" %>
+				<h3>Twitter</h3>
+			</div>
+		</div>
+	</div>
+</div>
