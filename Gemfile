@@ -37,6 +37,11 @@ gem 'spring',        group: :development
 # Heroku asset gem
 gem 'rails_serve_static_assets', group: :production
 
+# RSpec for unit tests
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
