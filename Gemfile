@@ -7,6 +7,9 @@ gem 'rails', '>= 4.1.0.beta1'
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 
+# Devise for user authentication
+gem 'devise'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
 
