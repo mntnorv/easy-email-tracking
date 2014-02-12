@@ -28,9 +28,6 @@ gem 'bootstrap-sass', '>= 3.1.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# Turbolinks compatibility for jQuery code
-gem 'jquery-turbolinks'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
