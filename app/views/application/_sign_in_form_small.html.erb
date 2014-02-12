@@ -1,7 +1,4 @@
-<%= form_for(:user, :url => session_path(:user),
-					:html => {:class => "form-horizontal"},
-					:format => :json,
-					:remote => true) do |f| %>
+<%= form_for(:user, :url => session_path(:user), :html => {:class => "form-horizontal"}) do |f| %>
 	<div class="form-group">
 		<%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => "Email" %>
 	</div>
