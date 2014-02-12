@@ -1,0 +1,17 @@
+.tooltip.top    .tooltip-arrow,
+.tooltip.left   .tooltip-arrow,
+.tooltip.bottom .tooltip-arrow,
+.tooltip.right  .tooltip-arrow {
+  border-left-color: #EBCCD1;
+}
+
+.tooltip-inner {
+  background-color: #F2DEDE;
+  color: #A94442;
+  padding: 8px;
+  border: solid 1px #EBCCD1;
+}
+
+.tooltip.in {
+  opacity: 1;
+}
