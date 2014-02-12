@@ -15,7 +15,32 @@
 				<% if user_signed_in? %>
 					<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 				<% else %>
-					<li><%= link_to "Sign in", new_user_session_path %></li>
+					<li class="dropdown">
+						<%= link_to "Sign in", new_user_session_path, :'data-toggle' => 'dropdown'%>
+						<div class="dropdown-menu form-dropdown">
+							<%= form_for(:user, :url => session_path(:user), :html => {:class => "form-horizontal"}) do |f| %>
+								<div class="form-group">
+									<%= f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => "Email" %>
+								</div>
+					
+								<div class="form-group">
+									<%= f.password_field :password, :class => 'form-control', :placeholder => "Password" %>
+								</div>
+					
+								<div class="form-group">
+									<div class="checkbox">
+										<label>
+											<%= f.check_box :remember_me %> Remember me
+										</label>
+									</div>
+								</div>
+					
+								<div class="form-group">
+									<%= f.submit "Sign in", :class => 'btn btn-primary btn-block btn-lg' %>
+								</div>
+							<% end %>
+						</div>
+					</li>
 				<% end %>
 			</ul>
 		</div>
