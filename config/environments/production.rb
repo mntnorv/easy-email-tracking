@@ -18,6 +18,17 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {
     :host => 'easy-email-tracking.herokuapp.com'
   }
+  
+  # ActionMailer SMTP settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.ktu.lt",
+    :port                 => 587,
+    :user_name            => ENV['KTU_USERNAME'],
+    :password             => ENV['KTU_PASSWORD'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
