@@ -1,11 +1,15 @@
 $(document).bind('page:change', function() {
-	// ADD SLIDEDOWN ANIMATION TO DROPDOWN //
-	$('.dropdown').on('show.bs.dropdown', function(e) {
+	dropdowns = $('.dropdown');
+	dropdowns.off('show.bs.dropdown');
+	dropdowns.off('hide.bs.dropdown');
+	
+	// Slide down animation on dropdown
+	dropdowns.on('show.bs.dropdown', function(e) {
 		$(this).find('.dropdown-menu').first().stop(true, true).slideDown();
 	});
 
-	// ADD SLIDEUP ANIMATION TO DROPDOWN //
-	$('.dropdown').on('hide.bs.dropdown', function(e) {
+	// Slide up animation on dropdown
+	dropdowns.on('hide.bs.dropdown', function(e) {
 		$(this).find('.dropdown-menu').first().stop(true, true).slideUp();
 	});
 }); 
