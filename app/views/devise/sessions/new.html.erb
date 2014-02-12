@@ -16,7 +16,7 @@
 							:'data-toggle'    => 'tooltip',
 							:'data-trigger'   => 'manual',
 							:'data-placement' => 'left',
-							:title            => ""
+							:title            => "#{devise_error_messages![:email]}"
 						%>
 					</div>
 				</div>
@@ -24,7 +24,14 @@
 				<div class="form-group">
 					<%= f.label :password, :class => 'col-md-4 control-label' %>
 					<div class="col-md-8">
-						<%= f.password_field :password, :class => 'form-control', :placeholder => "Password" %>
+						<%= f.password_field :password,
+							:class            => 'form-control',
+							:placeholder      => "Password",
+							:'data-toggle'    => 'tooltip',
+							:'data-trigger'   => 'manual',
+							:'data-placement' => 'left',
+							:title            => "#{devise_error_messages![:password]}"
+						%>
 					</div>
 				</div>
 	

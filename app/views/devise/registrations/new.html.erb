@@ -11,10 +11,10 @@
 					<%= f.label :email, :class => 'col-md-4 control-label' %>
 					<div class="col-md-8">
 						<%= f.email_field :email,
-							:autofocus => true,
-							:class => 'form-control',
-							:placeholder => "Email",
-							:'data-toggle' => 'tooltip',
+							:autofocus        => true,
+							:class            => 'form-control',
+							:placeholder      => "Email",
+							:'data-toggle'    => 'tooltip',
 							:'data-trigger'   => 'manual',
 							:'data-placement' => 'left',
 							:title            => "#{devise_error_messages![:email]}"
@@ -26,9 +26,9 @@
 					<%= f.label :password, :class => 'col-md-4 control-label' %>
 					<div class="col-md-8">
 						<%= f.password_field :password,
-							:class => 'form-control',
-							:placeholder => "Password",
-							:'data-toggle' => 'tooltip',
+							:class            => 'form-control',
+							:placeholder      => "Password",
+							:'data-toggle'    => 'tooltip',
 							:'data-trigger'   => 'manual',
 							:'data-placement' => 'left',
 							:title            => "#{devise_error_messages![:password]}"
@@ -40,9 +40,9 @@
 					<%= f.label :password_confirmation, :class => 'col-md-4 control-label' %>
 					<div class="col-md-8">
 						<%= f.password_field :password_confirmation,
-							:class => 'form-control',
-							:placeholder => "Confirm password",
-							:'data-toggle' => 'tooltip',
+							:class            => 'form-control',
+							:placeholder      => "Confirm password",
+							:'data-toggle'    => 'tooltip',
 							:'data-trigger'   => 'manual',
 							:'data-placement' => 'left',
 							:title            => "#{devise_error_messages![:password_confirmation]}"
