@@ -4,7 +4,7 @@
 		<h1>Forgot your password?</h1>
 	</div>
 	
-	<div class="row">
+	<div class="row form-row">
 		<div class="col-md-6">
 			<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "form-horizontal" }) do |f| %>				
 				<div class="form-group">
@@ -31,6 +31,8 @@
 
 			<%= render "devise/shared/links" %>
 		</div>
+		
+		<%= render partial: 'form_logo' %>
 	</div>
 	
 	<hr />
