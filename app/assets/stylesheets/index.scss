@@ -1,17 +1,26 @@
 #main-container {
   position: relative;
   
-  padding-top: 150px;
+  padding-top: 100px;
   padding-bottom: 100px;
-  background-color: #428BCA;
-  color: white;
+  background-color: #1552CE;
   
+  background-image: image-url('map_dots.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+  color: white;
   text-align: center;
 }
 
 #home-sign-in {
   color: white;
   font-weight: bold;
+}
+
+#home-logo {
+  margin-bottom: 50px;
 }
 
 #main-container .btn {
