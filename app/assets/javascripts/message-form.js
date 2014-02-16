@@ -1,5 +1,9 @@
-Modal.registerSubmitHandler('message-form', function (e) {
-	e.preventDefault();
+Modal.registerOpenHandler('message', function (content) {
+	form = content.find('form');
 	
-	console.log('It works!');
+	form.submit(function (e) {
+		e.preventDefault();
+	
+		console.log('It works!');
+	});
 });
