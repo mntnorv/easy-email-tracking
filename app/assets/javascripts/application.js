@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require bootstrap
-//= require holder
 //= require typeahead.bundle
 //= require bootstrap-tokenfield
+//= require js-routes
+//= require holder
+//= require handlebars.runtime
 //= require jquery_ujs
 //= require turbolinks
+//= require_tree ./templates
 //= require_tree .

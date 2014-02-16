@@ -22,6 +22,12 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Rails routes in javascript
+gem "js-routes"
+
+# Handlebars for the Sprockets asset pipeline
+gem 'handlebars_assets'
+
 # Bootstrap SASS
 gem 'bootstrap-sass', '>= 3.1.0'
 
