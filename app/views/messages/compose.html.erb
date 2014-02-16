@@ -1,0 +1,30 @@
+<% provide(:title, 'Compose message') %>
+
+<div class="container">
+	<div class="page-header">
+		<h1>Compose message</h1>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6">
+			<%= form_for(@message, :url => send_message_path, :html => {:class => 'form-vertical'}) do |f| %>
+				<%= f.text_field :recipient_list,
+					:class            => 'form-control',
+					:placeholder      => 'Recipients'
+				%>
+				
+				<%= f.text_field :subject,
+					:class            => 'form-control',
+					:placeholder      => 'Subject'
+				%>
+				
+				<%= f.text_area :body,
+					:class            => 'form-control',
+					:placeholder      => 'Body'
+				%>
+			<% end %>
+		</div>
+	</div>
+	
+	<hr />
+</div>

@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   root 'home#index'
   
   devise_for :users
+  
+  # Messages
+  get  '/message/compose', to: 'messages#compose', as: 'new_message'
+  post '/message/compose', to: 'messages#send',    as: 'send_message'
 end
