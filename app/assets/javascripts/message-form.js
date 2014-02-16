@@ -3,7 +3,6 @@ Modal.registerOpenHandler('message', function (content) {
 	
 	form.submit(function (e) {
 		e.preventDefault();
-	
 		console.log('It works!');
 	});
 });

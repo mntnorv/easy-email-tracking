@@ -2,6 +2,23 @@
 	
 	var openHandlers = {};
 	
+	var csrfName = '';
+	var csrfValue = '';
+	
+	$(document).bind('ready page:change', function() {
+		csrfName = $("meta[name='csrf-param']").attr('content');
+		csrfValue = $("meta[name='csrf-token']").attr('content');
+	});
+	
+	var addCsrfTokens = function (form) {
+		form.prepend(
+			'<div style="margin:0;padding:0;display:inline">'
+				+ '<input name="utf8" type="hidden" value="&#x2713;" />'
+				+ '<input name="' + csrfName + '" type="hidden" value="' + csrfValue + '" />'
+			+'</div>'
+		);
+	};
+	
 	Modal.registerOpenHandler = function (template, handler) {
 		if (typeof template !== 'string' && typeof handler !== 'function') {
 			console.error('Invalid parameters in Modal.registerSubmitHandler()');
@@ -15,11 +32,15 @@
 		modalContent = $('#modal-content');
 		modalContent.html(HandlebarsTemplates[template](context));
 		
-		$('#modal').modal('show');
-		
 		if (openHandlers[template]) {
 			openHandlers[template](modalContent);
 		}
+		
+		modalContent.find('form').each(function () {
+			addCsrfTokens($(this));
+		});
+		
+		$('#modal').modal('show');
 		
 		return false;
 	};
