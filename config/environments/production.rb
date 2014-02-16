@@ -22,10 +22,10 @@ Rails.application.configure do
   # ActionMailer SMTP settings
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.ktu.lt",
+    :address              => "smtp.mandrillapp.com",
     :port                 => 587,
-    :user_name            => ENV['KTU_USERNAME'],
-    :password             => ENV['KTU_PASSWORD'],
+    :user_name            => ENV['MANDRILL_USERNAME'],
+    :password             => ENV['MANDRILL_PASSWORD'],
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
