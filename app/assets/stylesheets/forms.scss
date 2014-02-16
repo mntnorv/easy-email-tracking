@@ -25,6 +25,12 @@
   padding: 10px;
 }
 
-.form-vertical .form-control:focus {
+.form-vertical .form-control:focus,
+.tokenfield.focus {
   z-index: 1;
+}
+
+.form-vertical .tokenfield.form-control {
+  padding-top: 7px;
+  padding-bottom: 4px;
 }
