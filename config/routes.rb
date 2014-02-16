@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   devise_for :users
   
   # Messages
-  post '/message/send', to: 'messages#send', as: 'send_message'
+  post '/message/new', to: 'messages#new', as: 'new_message'
 end

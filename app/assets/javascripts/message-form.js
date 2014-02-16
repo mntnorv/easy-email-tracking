@@ -6,6 +6,12 @@ Modal.registerOpenHandler('message', function (content) {
 	
 	form.submit(function (e) {
 		e.preventDefault();
-		console.log('It works!');
+		
+		var postData = $(this).serialize();
+		var postUrl  = $(this).attr('action');
+		
+		$.post(postUrl, postData, function (data) {
+			console.log(data);
+		}, 'json');
 	});
 });
