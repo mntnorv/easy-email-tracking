@@ -7,4 +7,5 @@ function Modal(){};
 Modal.show = function (template, context) {
 	$('#modal-content').html(HandlebarsTemplates[template](context));
 	$('#modal').modal('show');
+	return false;
 };
