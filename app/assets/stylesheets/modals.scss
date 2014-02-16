@@ -1,0 +1,30 @@
+.modal-content {
+  background-color: #333;
+  border-color: #444;
+}
+
+.modal-header {
+  padding: 4px 10px 4px 10px;
+  color: white;
+  border: none;
+}
+
+.modal-header .close {
+  padding-top: 4px;
+  color: #fff;
+  opacity: 0.5;
+  font-weight: normal;
+}
+
+.modal-body {
+  background-color: white;
+  padding: 0;
+}
+
+.modal-footer {
+  margin: 0;
+  border: none;
+  text-align: left;
+  
+  padding: 8px;
+}
