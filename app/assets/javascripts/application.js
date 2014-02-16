@@ -13,6 +13,8 @@
 //= require jquery
 //= require bootstrap
 //= require holder
+//= require typeahead.bundle
+//= require bootstrap-tokenfield
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

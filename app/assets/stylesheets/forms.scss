@@ -1,4 +1,6 @@
-@media (min-width: 992px) {
+@import "bootstrap/variables";
+
+@media (min-width: $screen-md-min) {
   .form-row {
     background-image: image-url('map_dots_small.png');
     background-repeat: no-repeat;
