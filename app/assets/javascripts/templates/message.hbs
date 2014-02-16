@@ -1,8 +1,19 @@
-<form accept-charset="UTF-8" action="{{route 'send_message_path'}}" class="form-vertical" method="post">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title">Modal title</h4>
+</div>
 
-	<input class="form-control" id="message_recipient_list" name="message[recipient_list]" placeholder="Recipients" type="text" />
-				
-	<input class="form-control" id="message_subject" name="message[subject]" placeholder="Subject" type="text" />
-				
-	<textarea class="form-control" id="message_body" name="message[body]" placeholder="Body"></textarea>
-</form>
+<div class="modal-body">
+	<form accept-charset="UTF-8" id="message-form" action="{{route 'send_message_path'}}" class="form-vertical" method="post">
+	
+		<input class="form-control" id="message_recipient_list" name="message[recipient_list]" placeholder="Recipients" type="text" />
+					
+		<input class="form-control" id="message_subject" name="message[subject]" placeholder="Subject" type="text" />
+					
+		<textarea class="form-control" id="message_body" name="message[body]" placeholder="Body"></textarea>
+		
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-primary">Send</button>
+		</div>
+	</form>
+</div>
