@@ -13,7 +13,8 @@ class Message < ActiveRecord::Base
   
   def recipient_list=(new_value)
     recipient_names = new_value.split(/,\s+/)
-    self.recipients = recipient_names.map { |name|
+    p recipient_names
+    recipient_names.each do |name|
       parts = name.split(/\s*[<>]/)
       name = nil
       email = nil
@@ -25,12 +26,15 @@ class Message < ActiveRecord::Base
         email = parts[0]
       end
       
-      if (!self.recipients.exists?(:conditions => ['email = ?', email]))
+      p "name:  #{name}"
+      p "email: #{email}"
+      
+      if (!self.recipients.where('email = ?', email).any?)
         self.recipients << Recipient.new(
           name:  name,
           email: email
         )
       end
-    }
+    end
   end
 end
