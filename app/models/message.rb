@@ -1,6 +1,9 @@
 class Message < ActiveRecord::Base
   has_many :recipients
   
+  validates :body, presence: true
+  validates_associated :recipients
+  
   def recipient_list
     self.recipients.map { |t|
       if (t.name != nil)
@@ -13,7 +16,6 @@ class Message < ActiveRecord::Base
   
   def recipient_list=(new_value)
     recipient_names = new_value.split(/,\s+/)
-    p recipient_names
     recipient_names.each do |name|
       parts = name.split(/\s*[<>]/)
       name = nil
@@ -25,9 +27,6 @@ class Message < ActiveRecord::Base
       else
         email = parts[0]
       end
-      
-      p "name:  #{name}"
-      p "email: #{email}"
       
       if (!self.recipients.where('email = ?', email).any?)
         self.recipients << Recipient.new(
