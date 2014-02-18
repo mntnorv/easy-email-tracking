@@ -1,6 +1,8 @@
 Modal.registerOpenHandler('message', function (content, modal) {
-	form = content.find('form');
-	recipientsField = form.find('#recipients');
+	var form = content.find('form');
+	var recipientsField = form.find('#recipients');
+	
+	var tooltipElements = $();
 	
 	var validateEmailToken = function (e) {
 		var re = /\S+@\S+\.\S+/;
@@ -27,8 +29,13 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	};
 	
 	var removeTooltips = function() {
-		modal.find('.tooltip').remove();
+		tooltipElements.each(function () {
+			$(this).tooltip('destroy');
+		});
+		tooltipElements = $();
 	};
+	
+	modal.on('hide.bs.modal', removeTooltips);
 	
 	var handleSuccess = function(e) {
 		removeTooltips();
@@ -43,13 +50,17 @@ Modal.registerOpenHandler('message', function (content, modal) {
 			for (var fieldId in modelErrors) {
 				if (modelErrors.hasOwnProperty(fieldId)) {
 					var field = form.find('#' + fieldId);
+					var message = ValidationErrors.get(modelErrors[fieldId][0]);
+
 					field.tooltip({
 						placement: 'left',
-						title:     ValidationErrors.get(modelErrors[fieldId][0]),
+						title:     message,
 						trigger:   'manual',
 						container: '#modal'
 					});
 					field.tooltip('show');
+					
+					tooltipElements = tooltipElements.add(field);
 				}
 			}
 		}

@@ -21,10 +21,6 @@
 		);
 	};
 	
-	var removeTooltips = function (e) {
-		modal.find('.tooltip').remove();
-	};
-	
 	Modal.registerOpenHandler = function (template, handler) {
 		if (typeof template !== 'string' && typeof handler !== 'function') {
 			console.error('Invalid parameters in Modal.registerSubmitHandler()');
@@ -46,7 +42,6 @@
 			addCsrfTokens($(this));
 		});
 		
-		modal.on('hide.bs.modal', removeTooltips);
 		modal.modal('show');
 		
 		return false;
