@@ -7,7 +7,10 @@ class MessagesController < ApplicationController
     if @message.save
       render json: {:success => 'MESSAGE_SAVED'}
     else
-      render json: {:error => 'INVALID_MESSAGE'}
+      render json: {
+        :error => 'INVALID_MESSAGE',
+        :model_errors => @message.errors
+      }, status: :bad_request
     end
   end
   

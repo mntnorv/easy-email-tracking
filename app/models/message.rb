@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   
   validates :body, presence: true
   validates_associated :recipients
+  validates_presence_of :recipients
   
   def recipient_list
     self.recipients.map { |t|

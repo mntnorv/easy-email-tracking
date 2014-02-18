@@ -4,10 +4,12 @@
 	
 	var csrfName = '';
 	var csrfValue = '';
+	var modal;
 	
 	$(document).bind('ready page:change', function() {
-		csrfName = $("meta[name='csrf-param']").attr('content');
+		csrfName  = $("meta[name='csrf-param']").attr('content');
 		csrfValue = $("meta[name='csrf-token']").attr('content');
+		modal     = $('#modal');
 	});
 	
 	var addCsrfTokens = function (form) {
@@ -17,6 +19,10 @@
 				+ '<input name="' + csrfName + '" type="hidden" value="' + csrfValue + '" />'
 			+'</div>'
 		);
+	};
+	
+	var removeTooltips = function (e) {
+		modal.find('.tooltip').remove();
 	};
 	
 	Modal.registerOpenHandler = function (template, handler) {
@@ -33,16 +39,21 @@
 		modalContent.html(HandlebarsTemplates[template](context));
 		
 		if (openHandlers[template]) {
-			openHandlers[template](modalContent);
+			openHandlers[template](modalContent, modal);
 		}
 		
 		modalContent.find('form').each(function () {
 			addCsrfTokens($(this));
 		});
 		
-		$('#modal').modal('show');
+		modal.on('hide.bs.modal', removeTooltips);
+		modal.modal('show');
 		
 		return false;
+	};
+	
+	Modal.close = function() {
+		modal.modal('hide');
 	};
 
 }(window.Modal = window.Modal || {}, jQuery));

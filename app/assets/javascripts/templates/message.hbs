@@ -5,11 +5,11 @@
 
 <form accept-charset="UTF-8" id="message-form" action="{{route 'new_message_path'}}" class="form-vertical" method="post">
 	<div class="modal-body">
-		<input class="form-control" id="message_recipient_list" name="message[recipient_list]" placeholder="Recipients" type="text" />
+		<input class="form-control" id="recipients" name="message[recipient_list]" placeholder="Recipients" type="text" />
 					
-		<input class="form-control" id="message_subject" name="message[subject]" placeholder="Subject" type="text" />
+		<input class="form-control" id="subject" name="message[subject]" placeholder="Subject" type="text" />
 					
-		<textarea class="form-control" id="message_body" name="message[body]" placeholder="Body"></textarea>
+		<textarea class="form-control" id="body" name="message[body]" placeholder="Body"></textarea>
 	</div>
 	
 	<div class="modal-footer">

@@ -1,9 +1,8 @@
-Modal.registerOpenHandler('message', function (content) {
+Modal.registerOpenHandler('message', function (content, modal) {
 	form = content.find('form');
+	recipientsField = form.find('#recipients');
 	
-	recipientsField = form.find('#message_recipient_list');
-
-	recipientsField.tokenfield().on('afterCreateToken', function(e) {
+	var validateEmailToken = function (e) {
 		var re = /\S+@\S+\.\S+/;
 		var segments = e.token.value.split(/\s*[<>]/);
 		
@@ -16,31 +15,65 @@ Modal.registerOpenHandler('message', function (content) {
 		
 		var valid = re.test(email);
 		
-		console.log('f', valid);
-		
 		if (segments.length > 3) {
 			valid = false;
-			console.log('if 1', valid);
 		} else if (segments.length == 3) {
 			valid = valid && /^\s*$/.test(segments[2]);
-			console.log('if 2', valid);
 		}
-		
-		console.log('fin', valid);
 		
 		if (!valid) {
 			$(e.relatedTarget).addClass('invalid');
 		}
-	});
+	};
 	
-	form.submit(function (e) {
+	var removeTooltips = function() {
+		modal.find('.tooltip').remove();
+	};
+	
+	var handleSuccess = function(e) {
+		removeTooltips();
+		Modal.close();
+	};
+	
+	var handleError = function(e) {
+		removeTooltips();
+		var response = e.responseJSON;
+		if (response['model_errors']) {
+			var modelErrors = response['model_errors'];
+			for (var fieldId in modelErrors) {
+				if (modelErrors.hasOwnProperty(fieldId)) {
+					var field = form.find('#' + fieldId);
+					field.tooltip({
+						placement: 'left',
+						title:     ValidationErrors.get(modelErrors[fieldId][0]),
+						trigger:   'manual',
+						container: '#modal'
+					});
+					field.tooltip('show');
+				}
+			}
+		}
+	};
+	
+	var submitMessageForm = function (e) {
 		e.preventDefault();
 		
 		var postData = $(this).serialize();
 		var postUrl  = $(this).attr('action');
 		
-		$.post(postUrl, postData, function (data) {
-			console.log(data);
-		}, 'json');
-	});
+		$.ajax({
+			type: "POST",
+			url: postUrl,
+			data: postData,
+			dataType: 'json'
+		}).done(handleSuccess).fail(handleError);
+	};
+
+	var recipientsFieldId = recipientsField.attr('id');
+	recipientsField.removeAttr('id');
+	recipientsField.tokenfield().on('afterCreateToken', validateEmailToken);
+	
+	form.find('.tokenfield').attr('id', recipientsFieldId);
+	
+	form.submit(submitMessageForm);
 });

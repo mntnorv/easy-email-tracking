@@ -17,7 +17,9 @@
 //= require js-routes
 //= require holder
 //= require handlebars.runtime
+//= require sprintf
 //= require modal
+//= require validation-errors
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree ./templates
