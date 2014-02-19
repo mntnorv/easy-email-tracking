@@ -36,7 +36,9 @@
 					<td><%= message.message_state.name %></td>
 					<td><%= localize(message.updated_at, :format => :long) %></td>
 					<td><%= localize(message.sent_at, :format => :long) if message.sent_at %></td>
-					<td></td>
+					<td>
+						<a href="#/edit/<%= message.id %>" class="btn btn-xs btn-success">Edit</a>
+					</td>
 				</tr>
 			<% end %>
 			

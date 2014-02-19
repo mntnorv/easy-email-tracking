@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   # Dashboard
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   
-  # Messages
-  post '/messages', to: 'messages#new', as: 'new_message'
+  # API
+  scope '/api' do
+    
+    # Messages
+    get  '/messages/:id', to: 'messages#get', as: 'get_message', constraints: { id: /\d+/ }
+    post '/messages',     to: 'messages#new', as: 'new_message'
+    
+  end
 end

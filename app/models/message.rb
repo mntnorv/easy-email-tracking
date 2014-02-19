@@ -45,4 +45,8 @@ class Message < ActiveRecord::Base
   def add_state
     self.message_state ||= MessageState.find_by name: 'Draft'
   end
+  
+  def as_json(options)
+    super(:only => [:subject, :body], :methods => [:recipient_list])
+  end
 end
