@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+message_states = MessageState.create([
+  {name: 'Draft'},
+  {name: 'Sent'}
+])

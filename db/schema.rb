@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219081436) do
+ActiveRecord::Schema.define(version: 20140219092022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "message_states", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "message_states", ["name"], name: "index_message_states_on_name", using: :btree
 
   create_table "messages", force: true do |t|
     t.string   "subject"
@@ -22,8 +30,11 @@ ActiveRecord::Schema.define(version: 20140219081436) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "sent_at"
+    t.integer  "message_state_id"
   end
 
+  add_index "messages", ["message_state_id"], name: "index_messages_on_message_state_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "recipients", force: true do |t|

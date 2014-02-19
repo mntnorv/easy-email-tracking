@@ -1,10 +1,13 @@
 class Message < ActiveRecord::Base
   has_many :recipients
   belongs_to :user
+  belongs_to :message_state
   
   validates :body, presence: true
   validates_associated :recipients
   validates_presence_of :recipients
+  
+  after_initialize :add_state
   
   def recipient_list
     self.recipients.map { |t|
@@ -37,5 +40,9 @@ class Message < ActiveRecord::Base
         )
       end
     end
+  end
+  
+  def add_state
+    self.message_state ||= MessageState.find_by name: 'Draft'
   end
 end
