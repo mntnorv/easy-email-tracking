@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
   has_many :recipients
+  belongs_to :user
   
   validates :body, presence: true
   validates_associated :recipients

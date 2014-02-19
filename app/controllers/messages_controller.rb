@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   
   def new
     @message = Message.new(message_params)
+    @message.user = current_user
     
     if @message.save
       render json: {:success => 'MESSAGE_SAVED'}
