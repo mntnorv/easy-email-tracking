@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   
   devise_for :users
   
+  # Dashboard
+  get '/dashboard', to: 'dashboard#index', as: 'dashboard'
+  
   # Messages
-  post '/message/new', to: 'messages#new', as: 'new_message'
+  post '/messages', to: 'messages#new', as: 'new_message'
 end
