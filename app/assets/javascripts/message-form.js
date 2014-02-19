@@ -69,13 +69,14 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	var submitMessageForm = function (e) {
 		e.preventDefault();
 		
-		var postData = $(this).serialize();
-		var postUrl  = $(this).attr('action');
+		var data = $(this).serialize();
+		var url  = $(this).attr('action');
+		var type = $(this).attr('method');
 		
 		$.ajax({
-			type: "POST",
-			url: postUrl,
-			data: postData,
+			type:     type,
+			url:      url,
+			data:     data,
 			dataType: 'json'
 		}).done(handleSuccess).fail(handleError);
 	};

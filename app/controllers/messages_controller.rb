@@ -15,6 +15,27 @@ class MessagesController < ApplicationController
     end
   end
   
+  def update
+    @message = current_user.messages.find_by_id(params[:id])
+    
+    if @message
+      @message.update_attributes(message_params)
+      
+      if @message.save
+        render json: {:success => 'MESSAGE_SAVED'}
+      else
+        render json: {
+          :error => 'INVALID_MESSAGE',
+          :model_errors => @message.errors
+        }, status: :bad_request
+      end
+    else
+      render json: {
+        :error => 'NO_SUCH_MESSAGE'
+      }, status: :not_found
+    end
+  end
+  
   def get
     @message = current_user.messages.find_by_id(params[:id])
     
@@ -25,7 +46,7 @@ class MessagesController < ApplicationController
     else
       render json: {
         :error => 'NO_SUCH_MESSAGE'
-      }, status: :bad_request
+      }, status: :not_found
     end
   end
   

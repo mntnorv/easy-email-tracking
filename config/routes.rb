@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   scope '/api' do
     
     # Messages
-    get  '/messages/:id', to: 'messages#get', as: 'get_message', constraints: { id: /\d+/ }
-    post '/messages',     to: 'messages#new', as: 'new_message'
+    get  '/messages/:id', to: 'messages#get',    as: 'get_message', constraints: { id: /\d+/ }
+    put  '/messages/:id', to: 'messages#update', as: 'update_message', constraints: { id: /\d+/ }
+    post '/messages',     to: 'messages#new',    as: 'new_message'
     
   end
 end

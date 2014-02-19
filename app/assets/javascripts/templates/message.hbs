@@ -3,7 +3,12 @@
 	<h4 class="modal-title">{{ title }}</h4>
 </div>
 
+{{#if message.id}}
+<form accept-charset="UTF-8" id="message-form" action="{{route 'update_message_path' message.id}}" class="form-vertical" method="put">
+{{else}}
 <form accept-charset="UTF-8" id="message-form" action="{{route 'new_message_path'}}" class="form-vertical" method="post">
+{{/if}}
+	
 	<div class="modal-body">
 		<input
 			class="form-control"
@@ -13,7 +18,7 @@
 			type="text"
 			value="{{ message.recipient_list }}"
 		/>
-					
+		
 		<input
 			class="form-control"
 			id="subject"

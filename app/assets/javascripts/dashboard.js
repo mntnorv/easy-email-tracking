@@ -21,6 +21,7 @@ $(document).bind('page:change', function() {
 				dataType: 'json'
 			}).done(function (data) {
 				editedMessage = data.message;
+				editedMessage.id = params.id;
 				childCallback();
 			});
 		},
