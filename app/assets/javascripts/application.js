@@ -10,17 +10,25 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// jQuery
 //= require jquery
-//= require bootstrap
-//= require typeahead.bundle
-//= require bootstrap-tokenfield
-//= require js-routes
-//= require holder
-//= require handlebars.runtime
-//= require sprintf
-//= require modal
-//= require validation-errors
 //= require jquery_ujs
 //= require turbolinks
+//
+// Vendor JS libraries
+//= require bootstrap
+//= require bootstrap-tokenfield
+//= require finch
+//= require handlebars.runtime
+//= require holder
+//= require js-routes
+//= require sprintf
+//= require typeahead.bundle
+//
+// Local JS libs
+//= require modal
+//= require validation-errors
+//
+// Other JS files
 //= require_tree ./templates
 //= require_tree .
