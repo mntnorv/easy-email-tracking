@@ -19,6 +19,7 @@
 //= require bootstrap
 //= require bootstrap-tokenfield
 //= require finch
+//= require finch-reset
 //= require handlebars.runtime
 //= require holder
 //= require js-routes

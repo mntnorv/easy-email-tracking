@@ -10,6 +10,10 @@
 		csrfName  = $("meta[name='csrf-param']").attr('content');
 		csrfValue = $("meta[name='csrf-token']").attr('content');
 		modal     = $('#modal');
+		
+		modal.on('hide.bs.modal', function() {
+			window.location.hash = '#';
+		});
 	});
 	
 	var addCsrfTokens = function (form) {
@@ -30,7 +34,7 @@
 		openHandlers[template] = handler;
 	};
 	
-	Modal.show = function (template, context) {
+	Modal.open = function (template, context) {
 		modalContent = $('#modal-content');
 		modalContent.html(HandlebarsTemplates[template](context));
 		
@@ -43,8 +47,6 @@
 		});
 		
 		modal.modal('show');
-		
-		return false;
 	};
 	
 	Modal.close = function() {
