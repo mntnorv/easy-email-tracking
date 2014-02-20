@@ -20,6 +20,8 @@ class Message < ActiveRecord::Base
   end
   
   def recipient_list=(new_value)
+    Recipient.delete_all(["message_id = ?", self.id])
+    
     recipient_names = new_value.split(/,\s+/)
     recipient_names.each do |name|
       parts = name.split(/\s*[<>]/)
@@ -33,12 +35,10 @@ class Message < ActiveRecord::Base
         email = parts[0]
       end
       
-      if (!self.recipients.where('email = ?', email).any?)
-        self.recipients << Recipient.new(
-          name:  name,
-          email: email
-        )
-      end
+      self.recipients << Recipient.new(
+        name:  name,
+        email: email
+      )
     end
   end
   
