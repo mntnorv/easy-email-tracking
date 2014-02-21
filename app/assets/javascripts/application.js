@@ -28,6 +28,7 @@
 //
 // Local JS libs
 //= require modal
+//= require table
 //= require validation-errors
 //
 // Other JS files

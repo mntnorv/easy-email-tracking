@@ -3,7 +3,7 @@
 <div class="container" id="dashboard" data-no-turbolink>
 	<br />
 	
-	<table class="table table-striped">
+	<table id="message-table" class="table table-striped">
 		<colgroup>
 			<col style="width: 40%;" />
 			<col style="width: 10%;" />
@@ -31,7 +31,7 @@
 			</tr>
 			
 			<% @messages.each do |message| %>
-				<tr>
+				<tr data-id="<%= message.id %>">
 					<td><%= message.subject %></td>
 					<td><%= message.message_state.name %></td>
 					<td><%= localize(message.updated_at, :format => :long) %></td>

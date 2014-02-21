@@ -4,6 +4,12 @@ $(document).bind('page:change', function() {
 	}
 	
 	var editedMessage;
+	var table = new Table($('#message-table'), [
+		'subject',
+		'state',
+		'modified-at',
+		'sent-at'
+	]);
 	
 	Finch.route('/', function() {
 		Modal.close();
@@ -34,4 +40,9 @@ $(document).bind('page:change', function() {
 	});
 	
 	Finch.listen();
+	
+	table.updateRow(23, {
+		subject: 'Naujas subject',
+		state:   'Sent'
+	});
 });
