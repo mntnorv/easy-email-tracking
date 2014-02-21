@@ -49,6 +49,6 @@ class Message < ActiveRecord::Base
   end
   
   def as_json(options)
-    super(:only => [:subject, :body], :methods => [:recipient_list])
+    super(:only => [:subject, :body, :message_state, :updated_at, :sent_at], :methods => [:recipient_list])
   end
 end

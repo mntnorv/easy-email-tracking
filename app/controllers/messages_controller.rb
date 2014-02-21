@@ -6,7 +6,10 @@ class MessagesController < ApplicationController
     @message.user = current_user
     
     if @message.save
-      render json: {:success => 'MESSAGE_SAVED'}
+      render json: {
+        :success => 'MESSAGE_SAVED',
+        :message => @message
+      }
     else
       render json: {
         :error => 'INVALID_MESSAGE',
@@ -22,7 +25,10 @@ class MessagesController < ApplicationController
       @message.update_attributes(message_params)
       
       if @message.save
-        render json: {:success => 'MESSAGE_SAVED'}
+        render json: {
+          :success => 'MESSAGE_SAVED',
+          :message => @message
+        }
       else
         render json: {
           :error => 'INVALID_MESSAGE',
