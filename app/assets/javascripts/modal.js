@@ -6,6 +6,8 @@
 	var csrfValue = '';
 	var modal;
 	
+	var returnData = null;
+	
 	$(document).bind('ready page:change', function() {
 		csrfName  = $("meta[name='csrf-param']").attr('content');
 		csrfValue = $("meta[name='csrf-token']").attr('content');
@@ -57,13 +59,17 @@
 		});
 		
 		if (onClose) {
-			modal.one('hide.bs.modal', onClose);
+			modal.one('hide.bs.modal', function(e) {
+				onClose(returnData);
+				returnData = null;
+			});
 		}
 		
 		modal.modal('show');
 	};
 	
-	Modal.close = function() {
+	Modal.close = function(data) {
+		returnData = data;
 		modal.modal('hide');
 	};
 

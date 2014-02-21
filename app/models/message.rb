@@ -44,11 +44,15 @@ class Message < ActiveRecord::Base
     end
   end
   
+  def message_state_name
+    self.message_state.name
+  end
+  
   def add_state
     self.message_state ||= MessageState.find_by name: 'Draft'
   end
   
   def as_json(options)
-    super(:only => [:subject, :body, :message_state, :updated_at, :sent_at], :methods => [:recipient_list])
+    super(:only => [ :id, :subject, :body, :updated_at, :sent_at], :methods => [:recipient_list, :message_state_name])
   end
 end

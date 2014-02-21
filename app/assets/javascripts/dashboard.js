@@ -12,10 +12,16 @@ $(document).bind('page:change', function() {
 	var editedMessage;
 	var table = new Table(messageTable, [
 		'subject',
-		'state',
-		'modified-at',
-		'sent-at'
+		'message_state_name',
+		'updated_at',
+		'sent_at'
 	]);
+	
+	var handleEditClose = function(message) {
+		if (message) {
+			table.updateRow(message.id, message);
+		}
+	};
 	
 	Finch.route('/', function() {
 		Modal.close();
@@ -41,14 +47,9 @@ $(document).bind('page:change', function() {
 			Modal.open('message', {
 				title:   'Edit message',
 				message: editedMessage
-			});
+			}, handleEditClose);
 		}
 	});
 	
 	Finch.listen();
-	
-	table.updateRow(23, {
-		subject: 'Naujas subject',
-		state:   'Sent'
-	});
 });

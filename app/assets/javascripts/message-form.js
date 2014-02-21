@@ -37,9 +37,9 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	
 	modal.on('hide.bs.modal', removeTooltips);
 	
-	var handleSuccess = function(e) {
+	var handleSuccess = function(response) {
 		removeTooltips();
-		Modal.close();
+		Modal.close(response.message);
 	};
 	
 	var handleError = function(e) {
