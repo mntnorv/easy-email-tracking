@@ -3,8 +3,14 @@ $(document).bind('page:change', function() {
 		return;
 	}
 	
+	var messageTable = $('#message-table');
+	
+	messageTable.find('.link').click(function(e) {
+		window.document.location = $(this).attr('data-href');
+	});
+	
 	var editedMessage;
-	var table = new Table($('#message-table'), [
+	var table = new Table(messageTable, [
 		'subject',
 		'state',
 		'modified-at',

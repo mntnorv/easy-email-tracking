@@ -5,18 +5,16 @@
 	
 	<table id="message-table" class="table table-striped">
 		<colgroup>
-			<col style="width: 40%;" />
+			<col style="width: 50%;" />
 			<col style="width: 10%;" />
 			<col style="width: 20%;" />
 			<col style="width: 20%;" />
-			<col style="width: 10%;" />
 		</colgroup>
 		<thead>
 			<th>Subject</th>
 			<th>State</th>
 			<th>Updated at</th>
 			<th>Sent at</th>
-			<th>Actions</th>
 		</thead>
 		<tbody>
 			<tr>
@@ -31,21 +29,17 @@
 			</tr>
 			
 			<% @messages.each do |message| %>
-				<tr data-id="<%= message.id %>">
+				<tr class="link" data-id="<%= message.id %>" data-href="#/edit/<%= message.id %>">
 					<td><%= message.subject %></td>
 					<td><%= message.message_state.name %></td>
 					<td><%= localize(message.updated_at, :format => :long) %></td>
 					<td><%= localize(message.sent_at, :format => :long) if message.sent_at %></td>
-					<td>
-						<a href="#/edit/<%= message.id %>" class="btn btn-xs btn-success">Edit</a>
-					</td>
 				</tr>
 			<% end %>
 			
 			<% if @messages.length == 0 %>
 				<tr>
 					<td>No messages</td>
-					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
