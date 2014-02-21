@@ -34,7 +34,17 @@
 		openHandlers[template] = handler;
 	};
 	
-	Modal.open = function (template, context) {
+	Modal.open = function (template, opt1, opt2) {
+		var context = {};
+		var onClose = null;
+		
+		if (typeof opt1 === 'object') {
+			context = opt1;
+			onClose = opt2;
+		} else if (typeof opt1 === 'function') {
+			onClose = opt1;
+		}
+		
 		modalContent = $('#modal-content');
 		modalContent.html(HandlebarsTemplates[template](context));
 		
@@ -45,6 +55,10 @@
 		modalContent.find('form').each(function () {
 			addCsrfTokens($(this));
 		});
+		
+		if (onClose) {
+			modal.one('hide.bs.modal', onClose);
+		}
 		
 		modal.modal('show');
 	};
