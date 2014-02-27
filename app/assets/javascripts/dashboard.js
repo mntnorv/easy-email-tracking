@@ -5,10 +5,6 @@ $(document).bind('page:change', function() {
 	
 	var messageTable = $('#message-table');
 	
-	messageTable.find('.link').click(function(e) {
-		window.document.location = $(this).attr('data-href');
-	});
-	
 	var editedMessage;
 	var table = new Table(messageTable, {
 		columns: [
@@ -19,12 +15,19 @@ $(document).bind('page:change', function() {
 		],
 		routeFunction: Routes.list_messages_path,
 		rowLayout: HandlebarsTemplates.message_row,
-		dataAttr: 'messages'
+		dataAttr: 'messages',
+		afterUpdate: function(tbody) {
+			var links = tbody.find('.link');
+			links.unbind("click");
+			links.click(function(e) {
+				window.document.location = $(this).attr('data-href');
+			});
+		}
 	});
 	
 	var handleEditClose = function(message) {
 		if (message) {
-			table.updateRow(message.id, message);
+			table.updateRow(message);
 		}
 	};
 	

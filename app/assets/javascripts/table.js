@@ -22,6 +22,9 @@ function Table(table, data) {
 	this.pageRoute = data.routeFunction;
 	this.dataAttr  = data.dataAttr;
 	
+	// Optional options
+	this.afterUpdate = data.afterUpdate;
+	
 	this.pageSize    = 10;
 	this.currentPage = 0;
 	this.rowCount    = 0;
@@ -37,7 +40,7 @@ Table.prototype.init = function () {
 
 Table.prototype.refresh = function () {
 	var self = this;
-	var url = this.pageRoute(this.pageSize, this.currentPage);
+	var url = this.pageRoute(this.pageSize, this.currentPage * this.pageSize);
 	
 	$.ajax({
 		type: "GET",
@@ -66,24 +69,39 @@ Table.prototype.updateRows = function(data) {
 			this.addRow(data[id]);
 		}
 	}
+	
+	if (this.afterUpdate) {
+		this.afterUpdate(this.tbody);
+	}
 };
 
 Table.prototype.addRow = function(data) {
-	var row = this.rowLayout(data);
+	var row = $(this.rowLayout(data));
 	this.rowElements[data.id] = row;
 	this.tbody.append(row);
 };
 
 Table.prototype.updateRow = function (data) {
+	console.log(data, this.rowData);
 	this.rowData[data.id] = data;
 
 	var newRow = this.rowLayout(data);
 	this.rowElements[data.id].replaceWith(newRow);
 	this.rowElements[data.id] = newRow;
+	
+	if (this.afterUpdate) {
+		this.afterUpdate(this.tbody);
+	}
+};
+
+Table.prototype.changePage = function (page) {
+	this.currentPage = page;
+	this.refresh();
 };
 
 Table.prototype.updatePagination = function() {
 	var paginationElement;
+	var self = this;
 	
 	if (this.pagination) {
 		this.pagination.html('');
@@ -95,7 +113,14 @@ Table.prototype.updatePagination = function() {
 	var pages = Math.ceil(this.rowCount / this.pageSize);
 	
 	for (var i = 0; i < pages; i++) {
-		paginationElement.append('<li><a href="#">' + (i + 1) + '</a></li>');
+		var pageElem = $('<li><a href="#">' + (i + 1) + '</a></li>');
+		pageElem.data('page', i);
+		
+		pageElem.click(function() {
+			self.changePage.bind(self)($(this).data('page'));
+		});
+		
+		paginationElement.append(pageElem);
 	};
 	
 	this.pagination = paginationElement;
