@@ -56,6 +56,18 @@ class MessagesController < ApplicationController
     end
   end
   
+  def list
+    limit  = params[:limit]
+    offset = params[:offset]
+    
+    @messages = current_user.messages.limit(limit).offset(offset)
+    
+    render json: {
+      :messages => @messages,
+      :count    => current_user.messages.count
+    }
+  end
+  
   private
 
   def message_params
