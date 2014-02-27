@@ -78,7 +78,7 @@ Table.prototype.updateRows = function(data) {
 Table.prototype.addRow = function(data) {
 	var row = $(this.rowLayout(data));
 	this.rowElements[data.id] = row;
-	this.tbody.append(row);
+	this.tbody.prepend(row);
 };
 
 Table.prototype.updateRow = function (data) {
@@ -129,4 +129,8 @@ Table.prototype.updatePagination = function() {
 	
 	this.pagination = paginationElement;
 	this.table.after(paginationElement);
+};
+
+Table.prototype.getRowData = function (id) {
+	return this.rowData[id];
 };

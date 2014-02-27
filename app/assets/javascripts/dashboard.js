@@ -5,7 +5,6 @@ $(document).bind('page:change', function() {
 	
 	var messageTable = $('#message-table');
 	
-	var editedMessage;
 	var table = new Table(messageTable, {
 		columns: [
 			'subject',
@@ -36,25 +35,16 @@ $(document).bind('page:change', function() {
 	});
 	
 	Finch.route('/new', function() {
-		Modal.open('message', {title: 'New message'});
+		Modal.open('message', {title: 'New message'}, function() {
+			table.refresh();
+		});
 	});
 	
 	Finch.route('/edit/:id', {
-		setup: function(params, childCallback) {
-			$.ajax({
-				type: "GET",
-				url: Routes.get_message_path(params.id),
-				dataType: 'json'
-			}).done(function (data) {
-				editedMessage = data.message;
-				editedMessage.id = params.id;
-				childCallback();
-			});
-		},
 		load: function(params) {
 			Modal.open('message', {
 				title:   'Edit message',
-				message: editedMessage
+				message: table.getRowData(params.id)
 			}, handleEditClose);
 		}
 	});

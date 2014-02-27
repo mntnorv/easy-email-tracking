@@ -64,6 +64,7 @@ class MessagesController < ApplicationController
       .limit(limit)
       .offset(offset)
       .order(created_at: :desc)
+      .includes(:recipients, :message_state)
     
     render json: {
       :messages => @messages,
