@@ -1,6 +1,21 @@
+/**
+ * Create a new Table object
+ *
+ * @param table - the jQuery table element.
+ * @param data  - additional required data.
+ *     data.columns - an array of table column names.
+ *     data.rowLayout - a function, that given the data of one element
+ *         returns the corresponding HTML.
+ *     data.pageRoute - a function that returns an API route for loading
+ *         loading a page of items. This function should take two
+ *         parameter - a limit and an offset.
+ *     data.dataAttr - the JSON element name that contains all the data
+ *         (as returned by the API).
+ */
 function Table(table, data) {
 	this.tbody     = table.find('tbody');
 	
+	// Required options
 	this.columns   = data.columns;
 	this.rowLayout = data.rowLayout;
 	this.pageRoute = data.routeFunction;
@@ -8,8 +23,9 @@ function Table(table, data) {
 	
 	this.pageSize    = 10;
 	this.currentPage = 0;
-	this.rows        = 0;
+	this.rowCount    = 0;
 	this.rowData     = 0;
+	this.rowElements = {};
 	
 	this.init();
 }
@@ -26,29 +42,37 @@ Table.prototype.refresh = function () {
 		url: url,
 		dataType: 'json'
 	}).success(function(data) {
-		this.rows    = data.count;
-		this.rowData = data[this.dataAttr];
+		this.rowCount = data.count;
+
+		this.rowData = {};
+		for (var i = data[this.dataAttr].length - 1; i >= 0; i--) {
+			var row = data[this.dataAttr][i];
+			this.rowData[row.id] = row;
+		};
+
+		this.updateRows(this.rowData);
 	});
 };
 
 Table.prototype.updateRows = function(data) {
+	this.rowElements = {};
 	this.tbody.html('');
+
+	for (var i = data.length - 1; i >= 0; i--) {
+		this.addRow(data[i]);
+	}
 };
 
 Table.prototype.addRow = function(data) {
 	var row = this.rowLayout(data);
+	this.rowElements[data.id] = row;
 	this.tbody.append(row);
 };
 
-Table.prototype.updateRow = function (id, data) {
-	var cells = this.tbody.find('[data-id="' + id + '"] > td');
-	for (var i = this.columns.length - 1; i >= 0; i--){
-		var col = this.columns[i];
-		
-		if (data[col]) {
-			cells.eq(i).text(data[col]);
-		} else {
-			cells.eq(i).text('');
-		}
-	};
+Table.prototype.updateRow = function (data) {
+	this.rowData[data.id] = data;
+
+	var newRow = this.rowLayout(data);
+	this.rowElements[data.id].replaceWith(newRow);
+	this.rowElements[data.id] = newRow;
 };
