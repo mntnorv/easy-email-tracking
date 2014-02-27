@@ -13,6 +13,7 @@
  *         (as returned by the API).
  */
 function Table(table, data) {
+	this.table     = table;
 	this.tbody     = table.find('tbody');
 	
 	// Required options
@@ -52,6 +53,7 @@ Table.prototype.refresh = function () {
 		};
 
 		self.updateRows.bind(self)(self.rowData);
+		self.updatePagination();
 	});
 };
 
@@ -78,4 +80,24 @@ Table.prototype.updateRow = function (data) {
 	var newRow = this.rowLayout(data);
 	this.rowElements[data.id].replaceWith(newRow);
 	this.rowElements[data.id] = newRow;
+};
+
+Table.prototype.updatePagination = function() {
+	var paginationElement;
+	
+	if (this.pagination) {
+		this.pagination.html('');
+		paginationElement = this.pagination;
+	} else {
+		paginationElement = $('<ul class="pagination"></ul>');
+	}
+	
+	var pages = Math.ceil(this.rowCount / this.pageSize);
+	
+	for (var i = 0; i < pages; i++) {
+		paginationElement.append('<li><a href="#">' + (i + 1) + '</a></li>');
+	};
+	
+	this.pagination = paginationElement;
+	this.table.after(paginationElement);
 };
