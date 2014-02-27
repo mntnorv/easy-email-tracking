@@ -10,12 +10,17 @@ $(document).bind('page:change', function() {
 	});
 	
 	var editedMessage;
-	var table = new Table(messageTable, [
-		'subject',
-		'message_state_name',
-		'updated_at',
-		'sent_at'
-	]);
+	var table = new Table(messageTable, {
+		columns: [
+			'subject',
+			'message_state_name',
+			'updated_at',
+			'sent_at'
+		],
+		routeFunction: Routes.list_messages_path,
+		rowLayout: HandlebarsTemplates.message_row,
+		dataAttr: 'messages'
+	});
 	
 	var handleEditClose = function(message) {
 		if (message) {

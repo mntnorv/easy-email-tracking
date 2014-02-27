@@ -35,31 +35,34 @@ Table.prototype.init = function () {
 };
 
 Table.prototype.refresh = function () {
-	var url = pageRoute(this.pageSize, this.currentPage);
+	var self = this;
+	var url = this.pageRoute(this.pageSize, this.currentPage);
 	
 	$.ajax({
 		type: "GET",
 		url: url,
 		dataType: 'json'
 	}).success(function(data) {
-		this.rowCount = data.count;
+		self.rowCount = data.count;
 
-		this.rowData = {};
-		for (var i = data[this.dataAttr].length - 1; i >= 0; i--) {
-			var row = data[this.dataAttr][i];
-			this.rowData[row.id] = row;
+		self.rowData = {};
+		for (var i = data[self.dataAttr].length - 1; i >= 0; i--) {
+			var row = data[self.dataAttr][i];
+			self.rowData[row.id] = row;
 		};
 
-		this.updateRows(this.rowData);
+		self.updateRows.bind(self)(self.rowData);
 	});
 };
 
 Table.prototype.updateRows = function(data) {
 	this.rowElements = {};
 	this.tbody.html('');
-
-	for (var i = data.length - 1; i >= 0; i--) {
-		this.addRow(data[i]);
+	
+	for (var id in data) {
+		if (data.hasOwnProperty(id)) {
+			this.addRow(data[id]);
+		}
 	}
 };
 
