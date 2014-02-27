@@ -60,7 +60,10 @@ class MessagesController < ApplicationController
     limit  = params[:limit]
     offset = params[:offset]
     
-    @messages = current_user.messages.limit(limit).offset(offset)
+    @messages = current_user.messages
+      .limit(limit)
+      .offset(offset)
+      .order(created_at: :desc)
     
     render json: {
       :messages => @messages,
