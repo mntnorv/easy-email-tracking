@@ -116,6 +116,10 @@ Table.prototype.updatePagination = function() {
 		var pageElem = $('<li><a href="#">' + (i + 1) + '</a></li>');
 		pageElem.data('page', i);
 		
+		if (this.currentPage == i) {
+			pageElem.addClass('active');
+		}
+		
 		pageElem.click(function() {
 			self.changePage.bind(self)($(this).data('page'));
 		});
