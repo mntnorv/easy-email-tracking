@@ -3,7 +3,7 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	var recipientsField = form.find('#recipients');
 	var sendButton      = form.find('#send-button');
 	
-	var actionElement   = $('<input type="hidden" name="action" />');
+	var actionElement   = $('<input type="hidden" name="submit" />');
 	var tooltipElements = $();
 	
 	sendButton.click(function() {

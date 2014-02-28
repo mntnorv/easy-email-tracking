@@ -25,8 +25,8 @@ class MessagesController < ApplicationController
       @message.update_attributes(message_params)
       
       if @message.save
-        if params[:send] == 'true'
-          MessageMailer.message_email(@message).deliver
+        if params[:submit] == 'send'
+          @message.deliver
         end
         
         render json: {

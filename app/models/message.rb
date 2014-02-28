@@ -9,6 +9,13 @@ class Message < ActiveRecord::Base
   
   after_initialize :add_state
   
+  def deliver
+    MessageMailer.message_email(self).deliver
+    self.sent_at       = DateTime.now
+    self.message_state = MessageState.find_by name: 'Sent'
+    self.save
+  end
+  
   def message_state_name
     self.message_state.name
   end
