@@ -1,8 +1,15 @@
 Modal.registerOpenHandler('message', function (content, modal) {
-	var form = content.find('form');
+	var form            = content.find('form');
 	var recipientsField = form.find('#recipients');
+	var sendButton      = form.find('#send-button');
 	
+	var actionElement   = $('<input type="hidden" name="action" />');
 	var tooltipElements = $();
+	
+	sendButton.click(function() {
+		actionElement.attr('value', 'send');
+		form.append(actionElement);
+	});
 	
 	var validateEmailToken = function (e) {
 		var re = /\S+@\S+\.\S+/;
@@ -70,7 +77,6 @@ Modal.registerOpenHandler('message', function (content, modal) {
 		e.preventDefault();
 		
 		var data = $(this).serialize();
-		data = data + '&send=true';
 		var url  = $(this).attr('action');
 		var type = $(this).attr('method');
 		
@@ -80,6 +86,8 @@ Modal.registerOpenHandler('message', function (content, modal) {
 			data:     data,
 			dataType: 'json'
 		}).done(handleSuccess).fail(handleError);
+		
+		actionElement.remove();
 	};
 
 	var recipientsFieldId = recipientsField.attr('id');
