@@ -5,7 +5,7 @@ class MessageMailer < ActionMailer::Base
     @message.save
     
     mail(
-      to: message.recipient_list,
+      to: message.recipients,
       from: message.user.email,
       subject: message.subject
     )

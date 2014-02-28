@@ -68,7 +68,7 @@ class MessagesController < ApplicationController
       .limit(limit)
       .offset(offset)
       .order(created_at: :desc)
-      .includes(:recipients, :message_state)
+      .includes(:message_state)
     
     render json: {
       :messages => @messages,
@@ -79,6 +79,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:recipient_list, :subject, :body)
+    params.require(:message).permit(:recipients, :subject, :body)
   end
 end
