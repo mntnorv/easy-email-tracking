@@ -3,7 +3,9 @@ class Message < ActiveRecord::Base
   belongs_to :message_state
   
   validates :body, presence: true
-  # validates :recipients, format: { with: /\A((\s*([\w\.]+@[\w\.]+|(\w+\s*)+<[\w\.]+@[\w\.]+>)),?)+\z/ }
+  validates :recipients, format: {
+    with: /\A((\s*([\w\.]+@[\w\.]+|(\p{L}+\s*)+<[\w\.]+@[\w\.]+>)),)*(\s*([\w\.]+@[\w\.]+|(\p{L}+\s*)+<[\w\.]+@[\w\.]+>))\z/
+  }
   
   after_initialize :add_state
   
