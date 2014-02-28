@@ -70,6 +70,7 @@ Modal.registerOpenHandler('message', function (content, modal) {
 		e.preventDefault();
 		
 		var data = $(this).serialize();
+		data = data + '&send=true';
 		var url  = $(this).attr('action');
 		var type = $(this).attr('method');
 		
