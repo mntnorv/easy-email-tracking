@@ -41,8 +41,12 @@
 	
 	{{#unless message.sent_at}}
 		<div class="modal-footer">
-			<button type="submit" id="send-button" class="btn btn-success">Send</button>
-			<button type="submit" class="btn btn-primary">Save draft</button>
+			<button type="submit" id="send-button" class="btn btn-success ladda-button" data-style="expand-right">
+				<span class="ladda-label">Send</span>
+			</button>
+			<button type="submit" id="save-button" class="btn btn-primary ladda-button" data-style="expand-right">
+				<span class="ladda-label">Save draft</span>
+			</button>
 		</div>
 	{{/unless}}
 </form>

@@ -23,6 +23,8 @@
 //= require handlebars.runtime
 //= require holder
 //= require js-routes
+//= require spin
+//= require ladda
 //= require moment-with-langs
 //= require sprintf
 //= require typeahead.bundle

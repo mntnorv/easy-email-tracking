@@ -2,6 +2,10 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	var form            = content.find('form');
 	var recipientsField = form.find('#recipients');
 	var sendButton      = form.find('#send-button');
+	var saveButton      = form.find('#save-button');
+	
+	var sendButtonLadda = Ladda.create(sendButton[0]);
+	var saveButtonLadda = Ladda.create(saveButton[0]);
 	
 	var actionElement   = $('<input type="hidden" name="submit" />');
 	var tooltipElements = $();
@@ -9,7 +13,22 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	sendButton.click(function() {
 		actionElement.attr('value', 'send');
 		form.append(actionElement);
+		
+		sendButtonLadda.start();
+		saveButton.attr('disabled', 'true');
 	});
+	
+	saveButton.click(function() {
+		saveButtonLadda.start();
+		sendButton.attr('disabled', 'true');
+	});
+	
+	var resetButtons = function() {
+		sendButton.removeAttr('disabled');
+		saveButton.removeAttr('disabled');
+		sendButtonLadda.stop();
+		saveButtonLadda.stop();
+	};
 	
 	var validateEmailToken = function (e) {
 		var re = /\S+@\S+\.\S+/;
@@ -85,7 +104,9 @@ Modal.registerOpenHandler('message', function (content, modal) {
 			url:      url,
 			data:     data,
 			dataType: 'json'
-		}).done(handleSuccess).fail(handleError);
+		}).done(handleSuccess).fail(handleError).always(function() {
+			resetButtons();
+		});
 		
 		actionElement.remove();
 	};
