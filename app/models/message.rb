@@ -21,7 +21,7 @@ class Message < ActiveRecord::Base
   end
   
   def add_state
-    self.message_state ||= MessageState.find_by name: 'Draft'
+    self.message_state_id ||= MessageState.find_by(name: 'Draft').id
   end
   
   def as_json(options)
