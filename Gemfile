@@ -46,6 +46,9 @@ gem 'spring',        group: :development
 # Heroku asset gem
 gem 'rails_serve_static_assets', group: :production
 
+# Fixes Heroku logging problems
+gem 'rails_12factor'
+
 # RSpec for unit tests
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
