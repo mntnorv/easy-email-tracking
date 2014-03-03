@@ -6,6 +6,10 @@ class MessagesController < ApplicationController
     @message.user = current_user
     
     if @message.save
+      if params[:submit] == 'send'
+        @message.deliver
+      end
+      
       render json: {
         :success => 'MESSAGE_SAVED',
         :message => @message

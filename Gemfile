@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Rails routes in javascript
-gem "js-routes"
+gem 'js-routes'
 
 # Handlebars for the Sprockets asset pipeline
 gem 'handlebars_assets'
