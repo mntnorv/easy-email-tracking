@@ -22,22 +22,28 @@ class MessagesController < ApplicationController
     @message = current_user.messages.find_by_id(params[:id])
     
     if @message
-      @message.update_attributes(message_params)
-      
-      if @message.save
-        if params[:submit] == 'send'
-          @message.deliver
-        end
+      if @message.sent_at == nil
+        @message.update_attributes(message_params)
         
-        render json: {
-          :success => 'MESSAGE_SAVED',
-          :message => @message
-        }
+        if @message.save
+          if params[:submit] == 'send'
+            @message.deliver
+          end
+          
+          render json: {
+            :success => 'MESSAGE_SAVED',
+            :message => @message
+          }
+        else
+          render json: {
+            :error => 'INVALID_MESSAGE',
+            :model_errors => @message.errors
+          }, status: :bad_request
+        end
       else
         render json: {
-          :error => 'INVALID_MESSAGE',
-          :model_errors => @message.errors
-        }, status: :bad_request
+          :error => 'MESSAGE_ALREADY_SENT'
+        }, status: :forbidden
       end
     else
       render json: {

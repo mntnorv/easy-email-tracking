@@ -95,8 +95,10 @@ Table.prototype.updateRow = function (data) {
 };
 
 Table.prototype.changePage = function (page) {
-	this.currentPage = page;
-	this.refresh();
+	if (this.currentPage != page) {
+		this.currentPage = page;
+		this.refresh();
+	}
 };
 
 Table.prototype.updatePagination = function() {

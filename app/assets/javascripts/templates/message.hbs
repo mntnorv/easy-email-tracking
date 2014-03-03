@@ -17,6 +17,7 @@
 			placeholder="Recipients"
 			type="text"
 			value="{{ message.recipients }}"
+			{{#if message.sent_at}}disabled{{/if}}
 		/>
 		
 		<input
@@ -26,6 +27,7 @@
 			placeholder="Subject"
 			type="text"
 			value="{{ message.subject }}"
+			{{#if message.sent_at}}disabled{{/if}}
 		/>
 					
 		<textarea
@@ -33,11 +35,14 @@
 			id="body"
 			name="message[body]"
 			placeholder="Body"
+			{{#if message.sent_at}}disabled{{/if}}
 		>{{ message.body }}</textarea>
 	</div>
 	
-	<div class="modal-footer">
-		<button type="submit" id="send-button" class="btn btn-success">Send</button>
-		<button type="submit" class="btn btn-primary">Save draft</button>
-	</div>
+	{{#unless message.sent_at}}
+		<div class="modal-footer">
+			<button type="submit" id="send-button" class="btn btn-success">Send</button>
+			<button type="submit" class="btn btn-primary">Save draft</button>
+		</div>
+	{{/unless}}
 </form>

@@ -42,6 +42,8 @@ $(document).bind('page:change', function() {
 	
 	Finch.route('/edit/:id', {
 		load: function(params) {
+			var message = table.getRowData(params.id);
+			
 			Modal.open('message', {
 				title:   'Edit message',
 				message: table.getRowData(params.id)
