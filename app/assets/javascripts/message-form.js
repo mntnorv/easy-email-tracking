@@ -10,17 +10,25 @@ Modal.registerOpenHandler('message', function (content, modal) {
 	var actionElement   = $('<input type="hidden" name="submit" />');
 	var tooltipElements = $();
 	
-	sendButton.click(function() {
+	sendButton.click(function(e) {
+		e.preventDefault();
+		
 		actionElement.attr('value', 'send');
 		form.append(actionElement);
 		
 		sendButtonLadda.start();
 		saveButton.attr('disabled', 'true');
+		
+		form.submit();
 	});
 	
-	saveButton.click(function() {
+	saveButton.click(function(e) {
+		e.preventDefault();
+		
 		saveButtonLadda.start();
 		sendButton.attr('disabled', 'true');
+		
+		form.submit();
 	});
 	
 	var resetButtons = function() {

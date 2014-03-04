@@ -89,7 +89,7 @@ Table.prototype.addRow = function(data) {
 Table.prototype.updateRow = function (data) {
 	this.rowData[data.id] = data;
 
-	var newRow = this.rowLayout(data);
+	var newRow = $(this.rowLayout(data));
 	this.rowElements[data.id].replaceWith(newRow);
 	this.rowElements[data.id] = newRow;
 	
