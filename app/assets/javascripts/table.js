@@ -47,6 +47,7 @@ Table.prototype.refresh = function () {
 		url: url,
 		dataType: 'json'
 	}).success(function(data) {
+		var oldRowData = self.rowData;
 		self.rowCount = data.count;
 
 		self.rowData = {};

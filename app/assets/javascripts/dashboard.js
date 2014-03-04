@@ -30,7 +30,24 @@ $(document).bind('page:change', function() {
 		}
 	};
 	
-	Finch.route('/', function() {
+	var loadMessage = function(id, callback) {
+		$.ajax({
+			type: "GET",
+			url: Routes.get_message_path(id),
+			dataType: 'json'
+		}).success(function (data) {
+			callback(data.message);
+		});
+	};
+	
+	var editMessage = function(message) {
+		Modal.open('message', {
+			title:   'Edit message',
+			message: message
+		}, handleEditClose);
+	};
+	
+	Finch.route('/', function(data, callback) {
 		Modal.close();
 	});
 	
@@ -44,10 +61,13 @@ $(document).bind('page:change', function() {
 		load: function(params) {
 			var message = table.getRowData(params.id);
 			
-			Modal.open('message', {
-				title:   'Edit message',
-				message: table.getRowData(params.id)
-			}, handleEditClose);
+			if (message) {
+				editMessage(message);
+			} else {
+				loadMessage(params.id, function (message) {
+					editMessage(message);
+				});
+			}
 		}
 	});
 	

@@ -15,7 +15,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //
-// Vendor JS libraries
+// Independent or jQuery-dependent vendor libs
+//= require asevented
 //= require bootstrap
 //= require bootstrap-tokenfield
 //= require finch
@@ -23,11 +24,13 @@
 //= require handlebars.runtime
 //= require holder
 //= require js-routes
-//= require spin
-//= require ladda
 //= require moment-with-langs
+//= require spin
 //= require sprintf
 //= require typeahead.bundle
+//
+// Dependent vendor libraries
+//= require ladda
 //
 // Local JS libs
 //= require modal
