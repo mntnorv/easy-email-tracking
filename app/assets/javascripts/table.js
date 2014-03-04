@@ -27,14 +27,16 @@ function Table(table, data) {
 	
 	this.pageSize    = 10;
 	this.currentPage = 0;
+	this.pages       = 0;
 	this.rowCount    = 0;
-	this.rowData     = 0;
+	this.rowData     = {};
 	this.rowElements = {};
 	
 	this.init();
 }
 
 Table.prototype.init = function () {
+	this.addPagination();
 	this.refresh();
 };
 
@@ -49,6 +51,7 @@ Table.prototype.refresh = function () {
 	}).success(function(data) {
 		var oldRowData = self.rowData;
 		self.rowCount = data.count;
+		self.pages = Math.ceil(self.rowCount / self.pageSize);
 
 		self.rowData = {};
 		for (var i = data[self.dataAttr].length - 1; i >= 0; i--) {
@@ -79,6 +82,7 @@ Table.prototype.updateRows = function(data) {
 Table.prototype.addRow = function(data) {
 	var row = $(this.rowLayout(data));
 	this.rowElements[data.id] = row;
+	this.rowData[data.id] = data;
 	this.tbody.prepend(row);
 };
 
@@ -95,42 +99,71 @@ Table.prototype.updateRow = function (data) {
 };
 
 Table.prototype.changePage = function (page) {
-	if (this.currentPage != page) {
-		this.currentPage = page;
-		this.refresh();
+	if (page >= 0 && page < this.pages) {
+		if (this.currentPage != page) {
+			this.currentPage = page;
+			this.refresh();
+		}
 	}
 };
 
-Table.prototype.updatePagination = function() {
-	var paginationElement;
+Table.prototype.addPagination = function() {
 	var self = this;
 	
-	if (this.pagination) {
-		this.pagination.html('');
+	this.pagination = {};
+	
+	if (this.pagination.container) {
+		this.pagination.container.html('');
 		paginationElement = this.pagination;
 	} else {
-		paginationElement = $('<ul class="pagination"></ul>');
+		this.pagination.container = $('<ul class="pagination"></ul>');
 	}
 	
-	var pages = Math.ceil(this.rowCount / this.pageSize);
+	var prevBtn    = $('<li><a href="">&laquo; Prev</a></li>');
+	var nextBtn    = $('<li><a href="">Next &raquo;</a></li>');
+	var middleElem = $('<li></li>');
+	var textElem   = $('<span></span>');
 	
-	for (var i = 0; i < pages; i++) {
-		var pageElem = $('<li><a href="#">' + (i + 1) + '</a></li>');
-		pageElem.data('page', i);
-		
-		if (this.currentPage == i) {
-			pageElem.addClass('active');
-		}
-		
-		pageElem.click(function() {
-			self.changePage.bind(self)($(this).data('page'));
-		});
-		
-		paginationElement.append(pageElem);
-	};
+	middleElem.append(textElem);
+	this.pagination.container.append(prevBtn);
+	this.pagination.container.append(middleElem);
+	this.pagination.container.append(nextBtn);
 	
-	this.pagination = paginationElement;
-	this.table.after(paginationElement);
+	this.pagination.nextBtn  = nextBtn;
+	this.pagination.prevBtn  = prevBtn;
+	this.pagination.textElem = textElem;
+	
+	nextBtn.click(function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		self.changePage(self.currentPage + 1);
+	});
+	
+	prevBtn.click(function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		self.changePage(self.currentPage - 1);
+	});
+	
+	this.table.after(this.pagination.container);
+};
+
+Table.prototype.updatePagination = function() {
+	var firstRecord = this.currentPage * this.pageSize + 1;
+	if (this.rowCount == 0) {
+		firstRecord = 0;
+	}
+	
+	var lastRecord  = firstRecord + this.pageSize - 1;
+	if (lastRecord > this.rowCount) {
+		lastRecord = this.rowCount;
+	}
+	
+	var pageText = 'Showing ' + firstRecord + '-' + lastRecord + ' of ' + this.rowCount;
+	this.pagination.textElem.text(pageText);
+	
+	this.pagination.nextBtn.toggleClass('disabled', this.currentPage >= (this.pages - 1));
+	this.pagination.prevBtn.toggleClass('disabled', this.currentPage <= 0);
 };
 
 Table.prototype.getRowData = function (id) {
