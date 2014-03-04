@@ -47,7 +47,7 @@ $(document).bind('page:change', function() {
 		}, handleEditClose);
 	};
 	
-	Finch.route('/', function(data, callback) {
+	Finch.route('/', function() {
 		Modal.close();
 	});
 	
