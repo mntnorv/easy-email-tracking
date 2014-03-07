@@ -5,10 +5,9 @@ class MessageMailer < ActionMailer::Base
     @message = message
     
     tracking_id  = "UA-48184059-1"
-    client_id    = message.user.id
-    recipient_id = 1
+    message_id   = message.id
     
-    @tracking_url = "http://www.google-analytics.com/collect?v=1&tid=#{tracking_id}&cid=#{client_id}&t=event&ec=email&ea=open&el=#{recipient_id}&cs=newsletter&cm=email&cn=EasyTrack"
+    @tracking_url = "http://www.google-analytics.com/collect?v=1&tid=#{tracking_id}&cid=#{message_id}&t=event&ec=email&ea=open&el=#{message_id}&cs=newsletter&cm=email&cn=EasyTrack&cm1=1"
     @tracking_url = URI.escape(@tracking_url)
     
     mail(
