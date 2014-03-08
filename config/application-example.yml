@@ -1,0 +1,9 @@
+# Add application configuration variables here.
+
+GOOGLE_KEY_SECRET:    key_secret
+GOOGLE_PRIVATE_KEY: |
+  -----BEGIN RSA PRIVATE KEY-----
+  private_key_here
+  -----END RSA PRIVATE KEY-----
+GOOGLE_SERVICE_EMAIL: google_service_account_email
+ANALYTICS_PROFILE_ID: analytics_profile_id

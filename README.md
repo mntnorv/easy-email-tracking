@@ -1,2 +1,2 @@
-test-rails-project
-==================
+easy-email-tracking
+===================

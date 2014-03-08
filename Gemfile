@@ -22,6 +22,12 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Google API client
+gem 'google-api-client'
+
+# Use figaro for environment variables
+gem 'figaro', :git => 'https://github.com/laserlemon/figaro'
+
 # Rails routes in javascript
 gem 'js-routes'
 
