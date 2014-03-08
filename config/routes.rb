@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   # Dashboard
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
+  get '/tracking',  to: 'tracking#index',  as: 'tracking'
   
   # API
   scope '/api' do
