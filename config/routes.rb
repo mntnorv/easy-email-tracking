@@ -1,9 +1,14 @@
+require 'resque/server'
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   
   root 'home#index'
   
   devise_for :users
+  
+  # Resque
+  mount Resque::Server.new, :at => '/resque'
   
   # Dashboard
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'

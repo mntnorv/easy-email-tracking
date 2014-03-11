@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228090744) do
+ActiveRecord::Schema.define(version: 20140311083251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140228090744) do
     t.datetime "sent_at"
     t.integer  "message_state_id"
     t.text     "recipients"
+    t.integer  "open_count",       default: 0
   end
 
   add_index "messages", ["message_state_id"], name: "index_messages_on_message_state_id", using: :btree

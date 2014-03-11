@@ -1,5 +1,6 @@
 require 'google/api_client'
 require 'date'
+require 'resque'
 
 class TrackingController < ApplicationController
   before_filter :authenticate_user!
@@ -47,5 +48,7 @@ class TrackingController < ApplicationController
       'metrics'    => "ga:metric1",
       'sort'       => "ga:eventLabel"
     })
+    
+    Resque.enqueue(FetchAnalytics)
   end
 end

@@ -22,5 +22,8 @@ module TestRailsProject
     
     # Do not access the database when precompiling assets
     config.assets.initialize_on_precompile = false
+    
+    # Autoload jobs
+    config.autoload_paths << "#{config.root}/app/jobs"
   end
 end
