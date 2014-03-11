@@ -1,3 +1,7 @@
+require 'google/api_client'
+require 'date'
+require 'resque'
+
 class FetchAnalytics
   @queue = :analytics
   
@@ -5,6 +9,8 @@ class FetchAnalytics
     result = self.fetch
     open_counts = self.parse(result)
     self.update_db(open_counts)
+  rescue Resque::TermException
+    Resque.enqueue(self)
   end
   
   def self.fetch
