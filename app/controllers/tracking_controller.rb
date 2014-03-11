@@ -43,9 +43,9 @@ class TrackingController < ApplicationController
       'ids'        => "ga:" + ENV["ANALYTICS_PROFILE_ID"],
       'start-date' => start_date,
       'end-date'   => end_date,
-      'dimensions' => "ga:day,ga:month",
-      'metrics'    => "ga:visits",
-      'sort'       => "ga:month,ga:day"
+      'dimensions' => "ga:eventLabel",
+      'metrics'    => "ga:metric1",
+      'sort'       => "ga:eventLabel"
     })
   end
 end
