@@ -1,0 +1,4 @@
+fetch_analytics:
+  class: FetchAnalytics
+  cron: "*/2 * * * *"
+  description: Updates message open counts from Google Analytics

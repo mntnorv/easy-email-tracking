@@ -22,8 +22,11 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Use resque for background jobs
+# Use Resque for background jobs
 gem 'resque'
+
+# For scheduling Resque jobs
+gem 'resque-scheduler'
 
 # Google API client
 gem 'google-api-client'
@@ -47,10 +50,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc',          group: :doc, require: false
+gem 'sdoc', group: :doc, require: false
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
-gem 'spring',        group: :development
+gem 'spring', group: :development
 
 # Heroku asset gem
 gem 'rails_serve_static_assets', group: :production
