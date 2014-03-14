@@ -34,6 +34,9 @@ gem 'google-api-client'
 # Use figaro for environment variables
 gem 'figaro', :git => 'https://github.com/laserlemon/figaro'
 
+# Use foreman for process management
+gem 'foreman'
+
 # Rails routes in javascript
 gem 'js-routes'
 
