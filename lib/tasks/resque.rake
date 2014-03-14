@@ -5,6 +5,4 @@ task "resque:setup" => :environment do
   if ENV["REDISCLOUD_URL"]
     Resque.redis = URI.parse(ENV["REDISCLOUD_URL"])
   end
-  
-  Resque.schedule = YAML.load_file(File.join(RAILS_ROOT, 'config/schedule.yml'))
 end
