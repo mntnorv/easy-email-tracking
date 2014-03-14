@@ -1,1 +1,1 @@
-web: env > .env; foreman start -f ProcfileFree
+web: foreman start -f ProcfileFree
